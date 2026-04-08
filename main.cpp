@@ -1,8 +1,10 @@
 #include <iostream>
 
+#include "src/file/BinaryFileWriter.h"
 #include "src/file/TextFileReader.h"
 
 const std::string IN_FILENAME = "inlet.in";
+const std::string OUT_FILENAME = "outlet.out";
 
 void print_list(const ListNode* const head) {
     if (!head) {
@@ -49,6 +51,9 @@ int main() {
 
     // Test: shows list
     print_list(head);
+
+    BinaryFileWriter writer(OUT_FILENAME);
+    writer.write_list(head, reader.get_rand_index_match());
 
     clear_list(head);
     return 0;

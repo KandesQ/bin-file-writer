@@ -6,6 +6,7 @@
 #define BINARY_FILE_WRITER_TEXTFILEREADER_H
 
 #include <string>
+#include <unordered_map>
 
 #include "../ListNode.h"
 
@@ -16,6 +17,8 @@ public:
     explicit TextFileReader(std::string filename);
 
     ListNode* read_list();
+
+    std::unordered_map<uint32_t, int> get_rand_index_match() const;
 
     void set_filename(std::string new_filename);
 

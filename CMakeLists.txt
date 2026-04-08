@@ -8,4 +8,6 @@ configure_file(inlet.in inlet.in COPYONLY)
 add_executable(binary_file_writer main.cpp
         src/ListNode.h
         src/file/TextFileReader.cpp
-        src/file/TextFileReader.h)
+        src/file/TextFileReader.h
+        src/file/BinaryFileWriter.cpp
+        src/file/BinaryFileWriter.h)

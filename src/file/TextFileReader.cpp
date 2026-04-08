@@ -92,6 +92,29 @@ ListNode* TextFileReader::read_list() {
     return node_ptrs[0];
 }
 
+std::unordered_map<uint32_t, int> TextFileReader::get_rand_index_match() const {
+    std::ifstream input(this->filename, std::ios::in);
+    if (!input.is_open()) {
+        throw std::runtime_error(
+            "Couldn't open file \"" + this->filename + "\". "
+            "Check if the provided file exists"
+            );
+    }
+
+    std::string line;
+    uint32_t node_index = 0;
+    std::unordered_map<uint32_t, int> node_index_to_rand_node_index;
+    while (std::getline(input, line)) {
+        int rand_index = std::stoi(split_line(line, ';')[1]);
+
+        node_index_to_rand_node_index[node_index] = rand_index;
+
+        ++node_index;
+    }
+
+    return node_index_to_rand_node_index;
+}
+
 void TextFileReader::set_filename(std::string new_filename) {
     this->filename = std::move(new_filename);
 }
