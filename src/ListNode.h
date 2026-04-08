@@ -7,11 +7,19 @@
 
 #include <string>
 
-struct ListNode {
-    ListNode* prev = nullptr;
-    ListNode* next = nullptr;
-    ListNode* rand = nullptr;
-    std::string data;
-};
+namespace List {
+
+    struct ListNode {
+        ListNode * prev = nullptr;
+        ListNode * next = nullptr;
+        ListNode * rand = nullptr;
+        std::string data;
+    };
+
+    void clear_list(ListNode*& head);
+
+    void print_list(const ListNode* head);
+
+}
 
 #endif //BINARY_FILE_WRITER_LISTNODE_H

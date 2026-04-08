@@ -14,7 +14,7 @@ class BinaryFileWriter {
 public:
     explicit BinaryFileWriter(std::string filename);
 
-    void write_list(const ListNode* head, const std::unordered_map<uint32_t, int>& rand_index_match) const;
+    void write_list(const List::ListNode* head, const std::unordered_map<uint32_t, int>& rand_index_match) const;
 
     void set_filename(std::string new_filename);
 

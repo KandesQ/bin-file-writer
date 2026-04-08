@@ -28,7 +28,7 @@ TextFileReader::TextFileReader(std::string filename)
     : filename(std::move(filename))
 {}
 
-ListNode* TextFileReader::read_list() {
+List::ListNode* TextFileReader::read_list() {
     std::ifstream input(this->filename, std::ios::in);
     if (!input.is_open()) {
         throw std::runtime_error(
@@ -40,11 +40,11 @@ ListNode* TextFileReader::read_list() {
     uint32_t node_index = 0;
     std::string line;
     std::unordered_map<uint32_t, int> node_index_to_rand_node_index;
-    std::vector<ListNode*> node_ptrs;
+    std::vector<List::ListNode*> node_ptrs;
     while (std::getline(input, line)) {
         std::vector<std::string> parts = std::move(split_line(line, ';'));
 
-        ListNode* node_ptr = new ListNode;
+        List::ListNode* node_ptr = new List::ListNode;
         node_ptr->data = std::move(parts[0]);
 
         node_index_to_rand_node_index[node_index] = std::stoi(parts[1]);
@@ -59,7 +59,7 @@ ListNode* TextFileReader::read_list() {
     }
 
     for (int i = 0; i < node_ptrs.size(); ++i) {
-        ListNode* node_ptr = node_ptrs[i];
+        List::ListNode* node_ptr = node_ptrs[i];
 
         // Prev
         node_ptr->prev = i != 0 ? node_ptrs[i - 1]: nullptr;

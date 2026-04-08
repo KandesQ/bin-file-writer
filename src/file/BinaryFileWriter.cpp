@@ -13,7 +13,7 @@ BinaryFileWriter::BinaryFileWriter(std::string filename)
 {}
 
 void BinaryFileWriter::write_list(
-    const ListNode* const head,
+    const List::ListNode* const head,
     const std::unordered_map<uint32_t, int>& rand_index_match
     ) const {
 
@@ -22,7 +22,7 @@ void BinaryFileWriter::write_list(
         throw std::runtime_error("Could not open " + this->filename + " file for writing");
     }
 
-    const ListNode* current_node = head;
+    const List::ListNode* current_node = head;
 
     uint32_t list_length = 0;
     while (current_node) {
