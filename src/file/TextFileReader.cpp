@@ -12,6 +12,14 @@
 #include <vector>
 #include <unordered_map>
 
+const std::string TextFileReader::FILE_LINE_REGEX_STR{
+    "^[a-zA-Z0-9]{1,1000};(-1|0|[1-9][0-9]{0,5}|1000000)$"
+};
+
+const std::regex TextFileReader::FILE_LINE_REGEX{
+    FILE_LINE_REGEX_STR
+};
+
 std::vector<std::string> split_line(const std::string& line, const char delimiter) {
     std::vector<std::string> parts;
     std::string part;
@@ -42,6 +50,12 @@ List::ListInfo TextFileReader::read_list() {
     std::unordered_map<uint32_t, int> node_index_to_rand_node_index;
     std::vector<List::ListNode*> node_ptrs;
     while (std::getline(input, line)) {
+        if (!std::regex_match(line, FILE_LINE_REGEX)) {
+            throw std::runtime_error(
+                "File lines have invalid format. Each line have to match following regex: " +
+                FILE_LINE_REGEX_STR);
+        };
+
         std::vector<std::string> parts = std::move(split_line(line, ';'));
 
         List::ListNode* node_ptr = new List::ListNode;

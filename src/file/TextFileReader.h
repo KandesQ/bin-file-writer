@@ -7,12 +7,15 @@
 
 #include <string>
 #include <unordered_map>
+#include <regex>
 
 #include "../ListNode.h"
 
 class TextFileReader
 {
     std::string filename;
+    static const std::string FILE_LINE_REGEX_STR;
+    static const std::regex FILE_LINE_REGEX;
 public:
     explicit TextFileReader(std::string filename);
 
